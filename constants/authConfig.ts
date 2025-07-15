@@ -1,3 +1,4 @@
+// To keep this not publicly accessible, the content of authConfig.ts should be moved into.env file and not pushed to GitHub
 import { Platform } from 'react-native';
 
 const isWeb = Platform.OS === 'web' && typeof window !== 'undefined';
