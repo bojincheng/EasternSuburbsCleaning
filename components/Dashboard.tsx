@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     StyleSheet,
     ScrollView,
-    Platform
+    Platform,
+    ImageBackground
 } from 'react-native';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from './LoginButton';
@@ -30,9 +31,16 @@ export default function Dashboard() {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            {/* Logo */}
+            <Image
+                source={require('../assets/Logo.png')}
+                style={styles.logo}
+                resizeMode="contain"
+            />
+
             {/* Header */}
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>DongJiao Cleaning</Text>
+                <Text style={styles.headerTitle}>DongJiao Clean</Text>
             </View>
 
             {/* Profile Section */}
@@ -62,7 +70,6 @@ export default function Dashboard() {
                 style={styles.logoutButton}
                 onPress={() =>
                     logout({
-                        // only use window.location on web, undefined on native
                         logoutParams: {
                             returnTo:
                                 Platform.OS === 'web' ? window.location.origin : undefined
@@ -84,20 +91,24 @@ const styles = StyleSheet.create({
     },
     loadingText: {
         fontSize: 18,
-        color: '#555'
+        color: '#fff'
     },
-
     container: {
         padding: 20,
-        backgroundColor: '#f5f5f5',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexGrow: 1,
+        backgroundColor: 'linear-gradient(180deg, #1C4532 0%, #496A5C 100%)',
     },
-
+    logo: {
+        width: 150,
+        height: 150,
+        marginBottom: 16
+    },
     header: {
-        width: '100%',
         backgroundColor: '#1C4532',
         paddingVertical: 16,
-        borderRadius: 8,
+        paddingHorizontal: 32,
+        borderRadius: 12,
         marginBottom: 24,
         alignItems: 'center'
     },
@@ -106,7 +117,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold'
     },
-
     profileSection: {
         alignItems: 'center',
         marginBottom: 32
@@ -115,20 +125,19 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 50,
-        borderWidth: 4,
-        borderColor: '#496A5C'
+        borderWidth: 3,
+        borderColor: '#fff'
     },
     welcomeText: {
         fontSize: 20,
-        color: '#2E3A2B',
+        color: '#fff',
         marginTop: 12
     },
     emailText: {
         fontSize: 14,
-        color: '#555',
+        color: '#ccc',
         marginTop: 4
     },
-
     modulesRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -148,15 +157,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600'
     },
-
     logoutButton: {
-        backgroundColor: '#1C4532',
+        backgroundColor: '#fff',
         paddingVertical: 14,
         paddingHorizontal: 40,
         borderRadius: 8
     },
     logoutText: {
-        color: '#fff',
+        color: '#1C4532',
         fontSize: 16,
         fontWeight: 'bold'
     }
