@@ -63,7 +63,7 @@ export default function SignInPage() {
 
                     <button onClick={handleGoogleLogin} style={styles.socialBtn}>
                         <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
+                            src="https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000"
                             alt="Google"
                             style={styles.socialIcon}
                         />
@@ -146,12 +146,13 @@ const styles: { [k: string]: React.CSSProperties } = {
         textDecoration: 'none',
     },
     input: {
-        width: '100%',
-        padding: '0.75rem',
-        marginBottom: '1rem',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        fontSize: '1rem',
+            width: '100%',
+            padding: '0.75rem',          // same vertical padding as button
+            borderRadius: '6px',         // match the button’s radius
+            border: '1px solid #ccc',
+            fontSize: '1rem',
+            boxSizing: 'border-box',     // include padding + border in the width calc
+            marginBottom: 16,
     },
     row: {
         display: 'flex',
@@ -202,9 +203,9 @@ const styles: { [k: string]: React.CSSProperties } = {
         color: '#333',
     },
     socialIcon: {
-        width: '18px',
-        height: '18px',
-        marginRight: '0.5rem',
+        width: '20px',
+        height: '20px',
+        marginRight: '10px',
         objectFit: 'contain',
         verticalAlign: 'middle',
     },
@@ -216,6 +217,7 @@ const styles: { [k: string]: React.CSSProperties } = {
         background: 'linear-gradient(135deg, #1C4532 0%, #496A5C 100%)',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',    // ✅ vertically center the whole column like the left side
         alignItems: 'center',
         padding: '2rem',
     },
