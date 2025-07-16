@@ -193,7 +193,7 @@ const styles: { [k: string]: React.CSSProperties } = {
         padding: '0.6rem',
         marginBottom: '0.75rem',
         display: 'flex',
-        alignItems: 'row',
+        alignItems: 'center',
         justifyContent: 'center',
         border: '1px solid #ccc',
         borderRadius: '6px',
@@ -217,6 +217,7 @@ const styles: { [k: string]: React.CSSProperties } = {
         background: 'linear-gradient(135deg, #1C4532 0%, #496A5C 100%)',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',    // ✅ vertically center the whole column like the left side
         alignItems: 'center',
         padding: '2rem',
     },
