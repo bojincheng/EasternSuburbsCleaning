@@ -40,11 +40,7 @@
     "react-native-screens": "~4.11.1",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
-<<<<<<< HEAD
-    "expo-auth-session": "~6.2.1"
-=======
     "react-router-dom": "^7.7.0"
->>>>>>> origin/YijiaWang
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
