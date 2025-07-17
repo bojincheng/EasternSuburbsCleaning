@@ -1,18 +1,39 @@
-// SignInPage.tsx
 import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'expo-router';
 
 export default function SignInPage() {
     const { loginWithRedirect, isLoading } = useAuth0();
-    const [email, setEmail] = useState('');
+    const [phoneEmail, setPhoneEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // @ts-ignore
-    const handleEmailLogin = () => loginWithRedirect({ login_hint: email });
-    // @ts-ignore
-    const handleGoogleLogin = () => loginWithRedirect({ connection: 'google-oauth2' });
-    // @ts-ignore
-    const handleFacebookLogin = () => loginWithRedirect({ connection: 'facebook' });
+    // Phone/Email
+    const handleEmailLogin = () => {
+        loginWithRedirect({
+            authorizationParams: {
+                login_hint: phoneEmail
+            }
+        });
+    };
+
+    // Google
+    const handleGoogleLogin = () => {
+        loginWithRedirect({
+            authorizationParams: {
+                connection: 'google-oauth2'
+            }
+        });
+    };
+
+    // Facebook
+    const handleFacebookLogin = () => {
+        loginWithRedirect({
+            authorizationParams: {
+                connection: 'facebook'
+            }
+        });
+    };
+
 
     return (
         <div style={styles.container}>
@@ -22,14 +43,14 @@ export default function SignInPage() {
                     <h1 style={styles.title}>Sign In</h1>
                     <p style={styles.smallText}>
                         Don’t have an account?{' '}
-                        <a href="/signup" style={styles.link}>Create now</a>
+                        <Link href="/signup" className="my-link-class">Create now</Link>
                     </p>
 
                     <input
-                        type="email"
-                        placeholder="E‑mail"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        type="text"
+                        placeholder="Phone or E‑mail"
+                        value={phoneEmail}
+                        onChange={e => setPhoneEmail(e.target.value)}
                         style={styles.input}
                     />
 
@@ -45,7 +66,12 @@ export default function SignInPage() {
                         <label style={styles.checkboxLabel}>
                             <input type="checkbox" /> Remember me
                         </label>
-                        <a href="/forgot" style={styles.link}>Forgot Password?</a>
+                        <button
+                            style={{ ...styles.link, background: 'none', border: 'none', padding: 0, color: '#496A5C', cursor: 'pointer' }}
+                            onClick={() => alert('Forgot Password?')}
+                        >
+                            Forgot Password?
+                        </button>
                     </div>
 
                     <button
@@ -146,13 +172,13 @@ const styles: { [k: string]: React.CSSProperties } = {
         textDecoration: 'none',
     },
     input: {
-            width: '100%',
-            padding: '0.75rem',          // same vertical padding as button
-            borderRadius: '6px',         // match the button’s radius
-            border: '1px solid #ccc',
-            fontSize: '1rem',
-            boxSizing: 'border-box',     // include padding + border in the width calc
-            marginBottom: 16,
+        width: '100%',
+        padding: '0.75rem',
+        borderRadius: '6px',
+        border: '1px solid #ccc',
+        fontSize: '1rem',
+        boxSizing: 'border-box',
+        marginBottom: 16,
     },
     row: {
         display: 'flex',
@@ -217,7 +243,7 @@ const styles: { [k: string]: React.CSSProperties } = {
         background: 'linear-gradient(135deg, #1C4532 0%, #496A5C 100%)',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',    // ✅ vertically center the whole column like the left side
+        justifyContent: 'center',
         alignItems: 'center',
         padding: '2rem',
     },
