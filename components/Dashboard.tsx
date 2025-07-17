@@ -1,4 +1,3 @@
-// components/Dashboard.tsx
 import React from 'react';
 import {
     View,
@@ -11,7 +10,7 @@ import {
     ImageBackground
 } from 'react-native';
 import { useAuth0 } from '@auth0/auth0-react';
-import LoginButton from './LoginButton';
+import LoginButton from './SignInPage';
 
 // @ts-ignore
 export default function Dashboard() {
