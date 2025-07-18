@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'expo-router';
+import {Image} from "react-native";
+import { StyleSheet } from "react-native";
 
 export default function SignInPage() {
     const { loginWithRedirect, isLoading } = useAuth0();
@@ -106,11 +108,12 @@ export default function SignInPage() {
                 <button style={styles.supportBtn}>Support</button>
 
                 <div style={styles.marketingCard}>
-                    <img
-                        src="/assets/Signin.webp"
-                        alt="DongJiao professional cleaner"
-                        style={styles.marketingImage}
+                    <Image
+                        source={require('../assets/Signin.png')}
+                        style = {styles_Special.marketingImage}
+                        resizeMode="contain"
                     />
+
                     <h2 style={styles.marketingTitle}>Get a Spotless Home, Effortlessly</h2>
                     <p style={styles.marketingText}>
                         Book professional cleaning services with just a few clicks.
@@ -135,6 +138,15 @@ export default function SignInPage() {
         </div>
     );
 }
+
+const styles_Special = StyleSheet.create({
+    marketingImage: {
+        width: 260,
+        height: 160,
+        borderRadius: 12,
+        alignSelf: 'center',
+    }
+});
 
 const styles: { [k: string]: React.CSSProperties } = {
     container: {
@@ -270,7 +282,7 @@ const styles: { [k: string]: React.CSSProperties } = {
         textAlign: 'center',
         color: '#333',
     },
-    marketingImage: {
+    logo: {
         width: '100%',
         height: 'auto',
         borderRadius: '6px',
