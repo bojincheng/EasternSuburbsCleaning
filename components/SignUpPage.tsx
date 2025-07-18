@@ -1,3 +1,4 @@
+// app/signup.tsx
 import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'expo-router';
@@ -26,17 +27,18 @@ export default function SignUpPage() {
 
     // Social login handlers
     const handleGoogle = () =>
-        loginWithRedirect({
-            authorizationParams: { connection: 'google-oauth2' }
-        });
+        loginWithRedirect({ authorizationParams: { connection: 'google-oauth2' } });
 
     const handleFacebook = () =>
-        loginWithRedirect({
-            authorizationParams: { connection: 'facebook' }
-        });
+        loginWithRedirect({ authorizationParams: { connection: 'facebook' } });
 
     return (
         <div style={styles.wrapper}>
+            {/* ← Back to Sign In */}
+            <Link href="/login" asChild>
+                <div style={styles.backBtn}>←</div>
+            </Link>
+
             <div style={styles.card}>
                 <h1 style={styles.title}>Sign Up</h1>
                 <p style={styles.subtitle}>
@@ -104,12 +106,29 @@ export default function SignUpPage() {
 
 const styles: { [key: string]: React.CSSProperties } = {
     wrapper: {
+        position: 'relative',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #1C4532 0%, #496A5C 100%)',
         padding: '1rem',
+    },
+    backBtn: {
+        position: 'absolute',
+        top: 16,
+        left: 16,
+        width: 32,
+        height: 32,
+        borderRadius: '50%',
+        backgroundColor: '#C19A68',
+        color: '#FFFFFF',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 18,
+        textDecoration: 'none',
+        cursor: 'pointer',
     },
     card: {
         backgroundColor: '#fff',
@@ -163,3 +182,4 @@ const styles: { [key: string]: React.CSSProperties } = {
     },
     socialIcon: { width: '18px', height: '18px', objectFit: 'contain' },
 };
+

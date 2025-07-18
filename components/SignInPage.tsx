@@ -66,12 +66,7 @@ export default function SignInPage() {
                         <label style={styles.checkboxLabel}>
                             <input type="checkbox" /> Remember me
                         </label>
-                        <button
-                            style={{ ...styles.link, background: 'none', border: 'none', padding: 0, color: '#496A5C', cursor: 'pointer' }}
-                            onClick={() => alert('Forgot Password?')}
-                        >
-                            Forgot Password?
-                        </button>
+                        <Link href="/forgot" className="my-link-class">Forgot password?</Link>
                     </div>
 
                     <button
@@ -111,6 +106,11 @@ export default function SignInPage() {
                 <button style={styles.supportBtn}>Support</button>
 
                 <div style={styles.marketingCard}>
+                    <img
+                        src="/assets/Signin.webp"
+                        alt="DongJiao professional cleaner"
+                        style={styles.marketingImage}
+                    />
                     <h2 style={styles.marketingTitle}>Get a Spotless Home, Effortlessly</h2>
                     <p style={styles.marketingText}>
                         Book professional cleaning services with just a few clicks.
@@ -260,12 +260,22 @@ const styles: { [k: string]: React.CSSProperties } = {
         fontSize: '0.9rem',
     },
     marketingCard: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
         backgroundColor: '#FFFFFF',
         borderRadius: '8px',
         padding: '2rem',
         maxWidth: '400px',
-        textAlign: 'left',
+        textAlign: 'center',
         color: '#333',
+    },
+    marketingImage: {
+        width: '100%',
+        height: 'auto',
+        borderRadius: '6px',
+        marginBottom: '1rem',
+        objectFit: 'contain',
     },
     marketingTitle: {
         margin: 0,
