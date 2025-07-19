@@ -79,6 +79,22 @@ export default function SignInPage() {
                         {isLoading ? 'Loading…' : 'Sign in'}
                     </button>
 
+                    <label style={{ fontSize: '0.8rem', color: '#555', marginBottom: '1rem', display: 'block' }}>
+                        <input
+                            type="checkbox"
+                            required
+                            style={{ marginRight: '0.5rem' }}
+                        />
+                        I have read and agree to the{' '}
+                        <a href="/terms" target="_blank" style={{ color: '#496A5C', textDecoration: 'underline' }}>
+                            Terms & Conditions
+                        </a>{' '}
+                        and{' '}
+                        <a href="/privacy" target="_blank" style={{ color: '#496A5C', textDecoration: 'underline' }}>
+                            Privacy Policy
+                        </a>.
+                    </label>
+
                     <div style={styles.divider}>
                         <span style={styles.dividerLine} /> or{' '}
                         <span style={styles.dividerLine} />
