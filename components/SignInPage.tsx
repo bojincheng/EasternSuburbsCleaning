@@ -4,6 +4,24 @@ import { Link } from 'expo-router';
 import {Image} from "react-native";
 import { StyleSheet } from "react-native";
 
+const customStyle = `
+  .cta-button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #496A5C;
+    color: #FFF;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #2f4a3d;
+  }
+`;
+
+
 export default function SignInPage() {
     const { loginWithRedirect, isLoading } = useAuth0();
     const [phoneEmail, setPhoneEmail] = useState('');
@@ -38,6 +56,8 @@ export default function SignInPage() {
 
 
     return (
+        <>
+            <style>{customStyle}</style>
         <div style={styles.container}>
             {/* ─── SIGN‑IN FORM ─── */}
             <div style={styles.left}>
@@ -135,7 +155,7 @@ export default function SignInPage() {
                         Book professional cleaning services with just a few clicks.
                         Upload photos, leave instructions, and let us handle the rest.
                     </p>
-                    <button style={styles.ctaBtn}>Learn more</button>
+                    <button className="cta-button">Learn more</button>
 
                     <div style={styles.quoteBox}>
                         <span style={styles.quoteLabel}>Quote Estimate:</span>
@@ -152,8 +172,10 @@ export default function SignInPage() {
                 </div>
             </div>
         </div>
+        </>
     );
 }
+
 
 const styles_Special = StyleSheet.create({
     marketingImage: {
