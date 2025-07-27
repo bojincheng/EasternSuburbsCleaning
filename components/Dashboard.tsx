@@ -10,6 +10,7 @@ import {
     ImageBackground
 } from 'react-native';
 import { useAuth0 } from '@auth0/auth0-react';
+import Unauthorised from './Unauthorised';
 import LoginButton from './SignInPage';
 
 // @ts-ignore
@@ -25,7 +26,7 @@ export default function Dashboard() {
     }
 
     if (!isAuthenticated) {
-        return <LoginButton />;
+        return <Unauthorised />;
     }
 
     return (
