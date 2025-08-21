@@ -1,3 +1,4 @@
+// components/Dashboard.tsx
 import React from 'react';
 import {
     View,
@@ -7,13 +8,11 @@ import {
     StyleSheet,
     ScrollView,
     Platform,
-    ImageBackground
 } from 'react-native';
 import { useAuth0 } from '@auth0/auth0-react';
 import Unauthorised from './Unauthorised';
-import LoginButton from './SignInPage';
+import { LinearGradient } from 'expo-linear-gradient';
 
-// @ts-ignore
 export default function Dashboard() {
     const { isLoading, isAuthenticated, user, logout } = useAuth0();
 
@@ -30,56 +29,63 @@ export default function Dashboard() {
     }
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            {/* Logo */}
-            <Image
-                source={require('../assets/Logo.png')}
-                style={styles.logo}
-                resizeMode="contain"
-            />
+        <LinearGradient
+            colors={['#1C4532', '#496A5C']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={{ flex: 1 }}
+        >
+            <ScrollView contentContainerStyle={styles.container}>
+                {/* Logo */}
+                <Image
+                    source={require('../assets/images/Logo.png')}
+                    style={styles.logo}
+                    resizeMode="contain"
+                />
 
-            {/* Header */}
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>DongJiao Clean</Text>
-            </View>
+                {/* Header */}
+                <View style={styles.header}>
+                    <Text style={styles.headerTitle}>DongJiao Clean</Text>
+                </View>
 
-            {/* Profile Section */}
-            <View style={styles.profileSection}>
-                {user?.picture && (
-                    <Image source={{ uri: user.picture }} style={styles.avatar} />
-                )}
-                <Text style={styles.welcomeText}>Hello, {user?.name}</Text>
-                <Text style={styles.emailText}>{user?.email}</Text>
-            </View>
+                {/* Profile Section */}
+                <View style={styles.profileSection}>
+                    {user?.picture && (
+                        <Image source={{ uri: user.picture }} style={styles.avatar} />
+                    )}
+                    <Text style={styles.welcomeText}>Hello, {user?.name}</Text>
+                    <Text style={styles.emailText}>{user?.email}</Text>
+                </View>
 
-            {/* Three Modules */}
-            <View style={styles.modulesRow}>
-                <TouchableOpacity style={styles.moduleCard}>
-                    <Text style={styles.moduleTitle}>Messages</Text>
+                {/* Three Modules */}
+                <View style={styles.modulesRow}>
+                    <TouchableOpacity style={styles.moduleCard}>
+                        <Text style={styles.moduleTitle}>Messages</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.moduleCard}>
+                        <Text style={styles.moduleTitle}>Images</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.moduleCard}>
+                        <Text style={styles.moduleTitle}>Profile</Text>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Log Out Button */}
+                <TouchableOpacity
+                    style={styles.logoutButton}
+                    onPress={() =>
+                        logout({
+                            logoutParams: {
+                                returnTo:
+                                    Platform.OS === 'web' ? window.location.origin : undefined,
+                            },
+                        })
+                    }
+                >
+                    <Text style={styles.logoutText}>Log Out</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.moduleCard}>
-                    <Text style={styles.moduleTitle}>Images</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.moduleCard}>
-                    <Text style={styles.moduleTitle}>Profile</Text>
-                </TouchableOpacity>
-            </View>
-
-            {/* Log Out Button */}
-            <TouchableOpacity
-                style={styles.logoutButton}
-                onPress={() =>
-                    logout({
-                        logoutParams: {
-                            returnTo:
-                                Platform.OS === 'web' ? window.location.origin : undefined
-                        }
-                    })
-                }
-            >
-                <Text style={styles.logoutText}>Log Out</Text>
-            </TouchableOpacity>
-        </ScrollView>
+            </ScrollView>
+        </LinearGradient>
     );
 }
 
@@ -87,22 +93,24 @@ const styles = StyleSheet.create({
     center: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#1C4532',
     },
     loadingText: {
         fontSize: 18,
-        color: '#fff'
+        color: '#fff',
     },
     container: {
         padding: 20,
         alignItems: 'center',
         flexGrow: 1,
-        backgroundColor: 'linear-gradient(180deg, #1C4532 0%, #496A5C 100%)',
+        // ❗ 不要在 RN 里写 CSS 渐变字符串
+        // backgroundColor: 'linear-gradient(...)'  ← 已移除
     },
     logo: {
         width: 150,
         height: 150,
-        marginBottom: 16
+        marginBottom: 16,
     },
     header: {
         backgroundColor: '#1C4532',
@@ -110,39 +118,39 @@ const styles = StyleSheet.create({
         paddingHorizontal: 32,
         borderRadius: 12,
         marginBottom: 24,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     headerTitle: {
         color: '#fff',
         fontSize: 24,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     profileSection: {
         alignItems: 'center',
-        marginBottom: 32
+        marginBottom: 32,
     },
     avatar: {
         width: 100,
         height: 100,
         borderRadius: 50,
         borderWidth: 3,
-        borderColor: '#fff'
+        borderColor: '#fff',
     },
     welcomeText: {
         fontSize: 20,
         color: '#fff',
-        marginTop: 12
+        marginTop: 12,
     },
     emailText: {
         fontSize: 14,
         color: '#ccc',
-        marginTop: 4
+        marginTop: 4,
     },
     modulesRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
-        marginBottom: 32
+        marginBottom: 32,
     },
     moduleCard: {
         flex: 1,
@@ -150,22 +158,23 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         marginHorizontal: 6,
         borderRadius: 8,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     moduleTitle: {
         color: '#fff',
         fontSize: 16,
-        fontWeight: '600'
+        fontWeight: '600',
     },
     logoutButton: {
         backgroundColor: '#fff',
         paddingVertical: 14,
         paddingHorizontal: 40,
-        borderRadius: 8
+        borderRadius: 8,
+        marginBottom: 20,
     },
     logoutText: {
         color: '#1C4532',
         fontSize: 16,
-        fontWeight: 'bold'
-    }
+        fontWeight: 'bold',
+    },
 });

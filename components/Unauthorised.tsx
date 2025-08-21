@@ -22,7 +22,7 @@ export default function Unauthorised() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#1C4532', // 深绿色背景
+        backgroundColor: '#1C4532',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 20,

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { Platform } from 'react-native';
-import { HapticTab } from '@/components/HapticTab';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { HapticTab } from '../../components/HapticTab';
+import TabBarBackground from '../../components/ui/TabBarBackground';
+import { Colors } from '../../constants/Colors';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 export default function TabsLayout() {
     const colorScheme = useColorScheme();
@@ -22,13 +22,7 @@ export default function TabsLayout() {
                 name="index"
                 options={{ tabBarStyle: { display: 'none' } }}
             />
-            <Tabs.Screen
-                name="explore"
-            />
-            <Tabs.Screen
-                name="login"
-                options={{ tabBarStyle: { display: 'none' } }}
-            />
+            <Tabs.Screen name="explore" />
         </Tabs>
     );
 }

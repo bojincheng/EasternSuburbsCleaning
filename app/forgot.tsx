@@ -1,2 +1,2 @@
-import ForgotPage from '@/components/ForgotPage';
+import ForgotPage from '../components/ForgotPage';
 export default ForgotPage;

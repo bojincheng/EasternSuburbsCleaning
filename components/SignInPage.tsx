@@ -145,7 +145,7 @@ export default function SignInPage() {
 
                 <div style={styles.marketingCard}>
                     <Image
-                        source={require('../assets/Signin.png')}
+                        source={require('../assets/images/Signin.png')}
                         style = {styles_Special.marketingImage}
                         resizeMode="contain"
                     />

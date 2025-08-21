@@ -1,4 +1,3 @@
-// app/privacy.tsx
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
